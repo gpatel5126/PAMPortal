@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<title>jQuery</title>
+	<meta name="viewport" content="width=device-width"/>
+	<link rel="stylesheet" href="style.css"/>
+	<script src="http:/code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+	<script src="js/sparkline.js"></script>
+	<script src="js/jquery.easypiechart.min.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic,700italic' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+	<script>
+	$(function() {
+		$('.chart').easyPieChart({
+			easing: 'easeOutBounce',
+			onStep: function(from, to, percent) {
+				$(this.el).find('.percent').text(Math.round(percent));
+			},
+			barColor: function(percent) {
+				return (percent > 40) ? '#59c807' : '#b50000';
+			},
+			lineCap: 'butt',
+			lineWidth: 11,
+			scaleLength: 0,
+			trackColor: '#e5e5e5'
+		});
+		var chart = window.chart = $('.chart').data('easyPieChart');
+		$('.js_update').on('click', function() {
+			chart.update(Math.random()*200-100);
+		});
+		$("#sparkline").sparkline([25,27,21,22,24,26,24,20,27,29,32,21,19,18,17,15,10], {
+		type: 'line',
+		width: '60%',
+		height: '50',
+		lineColor: '#83bbf4',
+		fillColor: '#eaf1f7',
+		spotColor: undefined,
+		minSpotColor: undefined,
+		maxSpotColor: undefined,
+		highlightSpotColor: undefined,
+		highlightLineColor: undefined,
+		normalRangeColor: '#ff0000',
+		drawNormalOnTop: true});
+	});
+	</script>
+</head>
+<body>
+<aside id="sidebar">
+	<div id="logo">
+		<img src="images/logo.png" alt="" /><span>Adobe Privileged Account Portal</span>
+	</div>
+	<nav>
+		<ul>
+			<li><a href="dashboard.html" class="active"><b></b><i class="fa fa-tachometer"></i>My Dashboard</a></li>
+		</ul>
+		
+		<h3>Executive Reports</h3>
+		<ul>
+			<li><a href="mockup.html"><b></b><i class="fa fa-laptop"></i>Server Compliance</a></li>
+			<li><a href="#"><b></b><i class="fa fa-users"></i>Account Compliance</a></li>
+		</ul>
+		
+		<h3>My Reports</h3>
+		<ul>
+			<li><a href="#"><b></b><i class="fa fa-desktop"></i>My Servers<span>3</span></a></li>
+			<li><a href="#"><b></b><i class="fa fa-user"></i>My Accounts<span>12</span></a></li>
+		</ul>
+		
+		<h3>Security Actions</h3>
+		<ul>
+			<li><a href="create_safe.php"><b></b><i class="fa fa-lock"></i>Create/Manage Safes</a></li>
+			<li><a href="#"><b></b><i class="fa fa-briefcase"></i>Add/Manage Objects</a></li>
+			<li><a href="#"><b></b><i class="fa fa-briefcase"></i>Pending Approvals<span>7</span></a></li>
+		</ul>
+	</nav>
+</aside>
+<h1 id="main"><i class="fa fa-tachometer"></i>My Dashboard</h1>
+<div id="content">
+	<div id="mydash">
+		<div id="welcome">
+			<h2>Welcome, Den Jones!</h2>
+		</div>
+		<div id="scorecards">
+			<div>
+				<h3>My Account Compliance</h3>
+				<div class="left">
+					<span class="complete">87.5%</span>
+					<span class="caption">Complete</span>
+				</div>
+				<div class="right">
+					<span class="remaining">146</span>
+					<span class="caption">Remaining</span>
+				</div>
+				<div class="progress"><span style="width: 87%;"></span></div>
+			</div>
+			
+			<div class="yellow">
+				<h3>My Server Compliance</h3>
+				<div class="left">
+					<span class="complete">64.2%</span>
+					<span class="caption">Complete</span>
+				</div>
+				<div class="right">
+					<span class="remaining">26</span>
+					<span class="caption">Remaining</span>
+				</div>
+				<div class="progress"><span style="width: 64%;"></span></div>
+			</div>
+			
+			<div class="grey">
+				<h3>Pending Requests</h3>
+				<a href="#" class="num"><span>6</span>Access Requests</a>
+				<a href="#" class="num"><span>12</span>Safe Creation Requests</a>
+			</div>
+		</div>
+		<div class="two-col cf">
+			<div>
+				<h2><i class="fa fa-user"></i>My account compliance</h2>
+				<div id="sparkline"></div>
+			</div>
+			<div>
+				<h2><i class="fa fa-desktop"></i>My server compliance</h2>
+			</div>
+		</div>
+	</div>
+	<img src="images/dash.jpg" alt="" style="margin-bottom: 50px;" />
+	
+</div>
+</body>
+</html>

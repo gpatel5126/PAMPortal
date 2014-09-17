@@ -1,0 +1,6 @@
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+
+RewriteRule simplesaml simplesamlphp
+RewriteRule dashboard.html /dashboard2.html
