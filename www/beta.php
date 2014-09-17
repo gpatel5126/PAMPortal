@@ -1,1 +1,0 @@
-You don't have access to this portal yet.  Check back soon!  <a href="logout.php">Logout</a>
